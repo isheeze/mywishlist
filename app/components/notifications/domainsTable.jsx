@@ -5,71 +5,84 @@ import {
     Text,
     Badge,
     useBreakpoints,
+    InlineStack,
+    Button,
+    BlockStack,
   } from '@shopify/polaris';
-  import {DeleteIcon} from '@shopify/polaris-icons';
-  import React from 'react';
+import {DeleteIcon} from '@shopify/polaris-icons';
+
+import {Modal, TitleBar, useAppBridge} from '@shopify/app-bridge-react';
+import DomainsModal from './domainsModal';
   
 export default function DomainTable() {
-    const orders = [
-      {
-        domain: 'isheeze.work',
-        status: <Badge progress="complete">Active</Badge>
-      }
-    ];
-    const resourceName = {
-      singular: 'domain',
-      plural: 'domains',
-    };
+  const shopify = useAppBridge()
+
+  const orders = [
+    {
+      domain: 'isheeze.work',
+      status: <Badge progress="complete">Active</Badge>
+    }
+  ];
+  const resourceName = {
+    singular: 'domain',
+    plural: 'domains',
+  };
+
+  const {selectedResources, allResourcesSelected, handleSelectionChange} = useIndexResourceState(orders);
   
-    const {selectedResources, allResourcesSelected, handleSelectionChange} =
-      useIndexResourceState(orders);
+  const rowMarkup = orders.map(
+    (
+      {domain, status},
+      index,
+    ) => (
+      <IndexTable.Row
+        id={index}
+        key={index}
+        selected={selectedResources.includes(index)}
+        position={index}
+      >
+        <IndexTable.Cell>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {domain}
+          </Text>
+        </IndexTable.Cell>
+        <IndexTable.Cell>{status}</IndexTable.Cell>
+      </IndexTable.Row>
+    ),
+  );
   
-    const rowMarkup = orders.map(
-      (
-        {domain, status},
-        index,
-      ) => (
-        <IndexTable.Row
-          id={index}
-          key={index}
-          selected={selectedResources.includes(index)}
-          position={index}
-        >
-          <IndexTable.Cell>
-            <Text variant="bodyMd" fontWeight="bold" as="span">
-              {domain}
-            </Text>
-          </IndexTable.Cell>
-          <IndexTable.Cell>{status}</IndexTable.Cell>
-        </IndexTable.Row>
-      ),
-    );
-  
-    const promotedBulkActions = [
-      {
-        content: 'Create shipping labels',
-        onAction: () => console.log('Todo: implement bulk edit'),
-      },
-    ];
-    const bulkActions = [
-      {
-        content: 'Add tags',
-        onAction: () => console.log('Todo: implement bulk add tags'),
-      },
-      {
-        content: 'Remove tags',
-        onAction: () => console.log('Todo: implement bulk remove tags'),
-      },
-      {
-        icon: DeleteIcon,
-        destructive: true,
-        content: 'Delete orders',
-        onAction: () => console.log('Todo: implement bulk delete'),
-      },
-    ];
-  
-    return (
-      <Card>
+  const promotedBulkActions = [
+    {
+      content: 'Create shipping labels',
+      onAction: () => console.log('Todo: implement bulk edit'),
+    },
+  ];
+  const bulkActions = [
+    {
+      content: 'Add tags',
+      onAction: () => console.log('Todo: implement bulk add tags'),
+    },
+    {
+      content: 'Remove tags',
+      onAction: () => console.log('Todo: implement bulk remove tags'),
+    },
+    {
+      icon: DeleteIcon,
+      destructive: true,
+      content: 'Delete orders',
+      onAction: () => console.log('Todo: implement bulk delete'),
+    },
+  ];
+
+  return (
+    <Card>
+      {/*<BlockStack gap={200}>
+        <InlineStack align="space-between">
+          <Text variant="headingLg" as="h5">
+            Domains
+          </Text>
+          <Button onClick={() => shopify.modal.show('domain-modal')}>Add domain</Button>
+        </InlineStack>
         <IndexTable
           condensed={useBreakpoints().smDown}
           resourceName={resourceName}
@@ -87,6 +100,14 @@ export default function DomainTable() {
         >
           {rowMarkup}
         </IndexTable>
-      </Card>
-    );
-  }
+      </BlockStack>
+      <Modal id="domain-modal" variant="max">
+        <DomainsModal />
+        <TitleBar title="Add Domain">
+          <button variant="primary">Save</button>
+          <button onClick={() => shopify.modal.hide('domain-modal')}>Close</button>
+        </TitleBar>
+      </Modal>*/}
+    </Card>
+  );
+}

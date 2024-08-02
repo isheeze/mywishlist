@@ -70,7 +70,7 @@ export default function EmailTable() {
   
     return (
       <Card>
-        <IndexTable
+        {/*<IndexTable
           condensed={useBreakpoints().smDown}
           resourceName={resourceName}
           itemCount={orders.length}
@@ -86,7 +86,7 @@ export default function EmailTable() {
           promotedBulkActions={promotedBulkActions}
         >
           {rowMarkup}
-        </IndexTable>
+        </IndexTable>*/}
       </Card>
     );
   }

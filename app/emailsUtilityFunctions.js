@@ -1,32 +1,66 @@
 import { defaultMailerSendEmail, personalDomain, personalName, personalBrandName, appName } from './constants'
 
-export async function sendEmail(to, from, subject, message) {
+function mailer (url, method, body, callback){
     const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("X-Requested-With", "XMLHttpRequest");
-      myHeaders.append("Authorization", "Bearer mlsn.faed12d1a05953270d6eaa652474320609e7b421c34122255f8ded5aa45f6971");
-  
-      const raw = JSON.stringify({
-      "from": {
-          "email": from
-      },
-      "to": to, // [{"email":to}]
-      "subject": subject,
-      "html": message
-      });
-  
-      const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
-      };
-  
-      fetch("https://api.mailersend.com/v1/email", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.error('Error sending email:',error));
-};
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("X-Requested-With", "XMLHttpRequest");
+    myHeaders.append("Authorization", "Bearer mlsn.e18ada3b5e83ac8de0324bfbebf5a144dcbee78252ac9b83fa302644a0d2b02a");
+
+    const requestOptions = {
+    method: method,
+    headers: myHeaders,
+    body: body,
+    redirect: "follow"
+    };
+
+    fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((result) => callback(result))
+    .catch((error) => console.error(error));
+}
+
+export async function addDomain (domain){
+    const raw = JSON.stringify({
+        "name": domain
+    });
+    mailer("https://api.mailersend.com/v1/domains", "POST", raw, (res) => {
+        console.log(res)
+    })
+}
+export async function deleteDomain (domain_id){
+    mailer(`https://api.mailersend.com/v1/domains/${domain_id}`, "DELETE", "", (res)=>{
+        console.log(res)
+    })
+}
+export async function getDNS (domain_id){
+    mailer(`https://api.mailersend.com/v1/domains/${domain_id}/dns-records`, "GET", "", (res)=>{
+        console.log(res)
+    })
+}
+export async function getVerificationStatus (domain_id){
+    mailer(`https://api.mailersend.com/v1/domains/${domain_id}/verify`, "GET", "", (res)=>{
+        console.log(res)
+    })
+}
+export async function sendEmail(to, from, subject, message) {
+    const raw = JSON.stringify({
+        "from": {
+            "email": from
+        },
+        "to": to, // [{"email":to}]
+        "subject": subject,
+        "html": message
+    });
+
+    fetch("https://api.mailersend.com/v1/email", requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.error('Error sending email:',error));
+
+    mailer("https://api.mailersend.com/v1/email", "POST", raw, (res) => {
+        console.log(res)
+    })
+}
 export async function sendTestEmail() {
     const testMailHtml = `<!DOCTYPE html>
         <html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">

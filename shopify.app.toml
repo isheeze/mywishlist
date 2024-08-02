@@ -3,7 +3,7 @@
 client_id = "d59765e4d24d7e50969ac8a905400c6a"
 name = "my-wishlist"
 handle = "my-wishlist-19"
-application_url = "https://endless-mighty-hometown-mardi.trycloudflare.com"
+application_url = "https://cups-serves-remark-virgin.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_metaobjects,read_product_listings,read_products,write_metaobject_
 
 [auth]
 redirect_urls = [
-  "https://endless-mighty-hometown-mardi.trycloudflare.com/auth/callback",
-  "https://endless-mighty-hometown-mardi.trycloudflare.com/auth/shopify/callback",
-  "https://endless-mighty-hometown-mardi.trycloudflare.com/api/auth/callback"
+  "https://cups-serves-remark-virgin.trycloudflare.com/auth/callback",
+  "https://cups-serves-remark-virgin.trycloudflare.com/auth/shopify/callback",
+  "https://cups-serves-remark-virgin.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

@@ -9,7 +9,8 @@ import {
 } from "@shopify/polaris";
 import {
     CaretUpIcon,
-    CaretDownIcon
+    CaretDownIcon,
+    StatusActiveIcon
 } from '@shopify/polaris-icons';
 
 import {useState, useCallback} from 'react';
@@ -47,7 +48,15 @@ export default function SetupGuide(){
                     >
                       <Box padding="400">
                         <InlineStack align="space-between">
-                          <Text variant="bodyMd" as="p" fontWeight="semibold">View shipping settings</Text>
+                          <InlineStack align="space-between" blockAlign="start" wrap={false} gap={200}>
+                            <div>
+                              <Icon
+                                source={StatusActiveIcon}
+                                tone="info"
+                              />
+                            </div>
+                            <Text variant="bodyMd" as="p" fontWeight="semibold">View shipping settings</Text>
+                          </InlineStack>
                           <div><Icon
                             source={openSetupCollapsible1 ? CaretUpIcon : CaretDownIcon}
                           />
@@ -85,7 +94,15 @@ export default function SetupGuide(){
                     >
                       <Box padding="400">
                         <InlineStack align="space-between">
-                          <Text variant="bodyMd" as="p" fontWeight="semibold">View shipping settings</Text>
+                          <InlineStack align="space-between" blockAlign="start" wrap={false} gap={200}>
+                            <div>
+                              <Icon
+                                source={StatusActiveIcon}
+                                tone="base"
+                              />
+                            </div>
+                            <Text variant="bodyMd" as="p" fontWeight="semibold">View shipping settings</Text>
+                          </InlineStack>
                           <div><Icon
                             source={openSetupCollapsible2 ? CaretUpIcon : CaretDownIcon}
                           />

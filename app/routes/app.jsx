@@ -28,6 +28,10 @@ export default function App() {
         <Link to="/app/pricing">Pricing Plan</Link>
       </ui-nav-menu>
       <Outlet />
+      <script async={true} src="https://embed.tawk.to/668fe285c3fb85929e3e1c25/1i2h0pnd9" crossOrigin="*"></script>
+      <script type="text/javascript">
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      </script>
     </AppProvider>
   );
 }
