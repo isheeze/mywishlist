@@ -2,7 +2,6 @@ import {
   Page,
   Layout
 } from "@shopify/polaris";
-import Notification from "../components/dashboard/notification";
 import SetupGuide from "../components/dashboard/setupGuide";
 import Stats from "../components/dashboard/stats";
 import TopProducts from "../components/dashboard/topProducts";
@@ -17,9 +16,6 @@ export default function HomePage() {
     primaryAction={{content: 'Manage Plan', onAction: () => alert('click on Manage Plan')}}
     >
       <Layout>
-        <Layout.Section>
-          <Notification />
-        </Layout.Section>
         <Layout.Section>
           <SetupGuide />
         </Layout.Section>

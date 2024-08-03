@@ -1,11 +1,15 @@
 import {
     Text,
-    Tabs,
+    ButtonGroup,
+    Button,
     Layout,
-    Box
+    Box,
+    TextField,
+    Page
   } from '@shopify/polaris';
   
 import {useState, useCallback} from 'react';
+import DNSRecords from '../notifications/DNSRecords';
 
 export default function DomainsModal(){
     const [selected, setSelected] = useState(0);
@@ -15,41 +19,30 @@ export default function DomainsModal(){
         [],
     );
 
-    const tabs = [
-        {
-        id: 'domain',
-        content: 'Domain',
-        panelID: 'domain-content',
-        },
-        {
-        id: 'verify',
-        content: 'Verification',
-        panelID: 'verify-content',
-        },
-    ];
-
     return(
-        <Layout>
-            <Layout.Section>
-                <Box paddingBlockStart="400">
-                <Text variant="headingLg" as="h5" alignment="center">
-                    Configure new Domain
-                </Text>
-                <Text variant="bodyMd" as="p" alignment="center">
-                    Follow steps to verify your domain
-                </Text>
-                </Box>
-            </Layout.Section>
-            <Layout.Section>
-                <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange} fitted>
-                    {tabs[selected].panelID == 'domain-content' && <div>
-                    domain
-                    </div>}
-                    {tabs[selected].panelID == 'verify-content' && <div>
-                    verify
-                    </div>}
-                </Tabs>
-            </Layout.Section>
-        </Layout>
+        <Page>
+            <Layout>
+                <Layout.Section>
+                    <Box paddingBlockStart="400">
+                    <Text variant="headingLg" as="h5" alignment="center">
+                        Configure new Domain
+                    </Text>
+                    <Text variant="bodyMd" as="p" alignment="center">
+                        Follow steps to verify your domain
+                    </Text>
+                    </Box>
+                </Layout.Section>
+                <Layout.Section>
+                    <TextField
+                    label="New Domain"
+                    autoComplete="off"
+                    connectedRight={<Button>Add Domain</Button>}
+                    />
+                </Layout.Section>
+                <Layout.Section>
+                    <DNSRecords />
+                </Layout.Section>
+            </Layout>
+        </Page>
     )
 }

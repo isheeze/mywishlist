@@ -5,6 +5,13 @@ import {
   Text
 } from '@shopify/polaris';
 import Appearance from '../components/settings/appearance';
+import { json } from '@remix-run/node';
+
+export async function loader({params}){
+  console.log('------> ', params.open_appreance)
+  return json({"message":"done"})
+}
+
 export default function AppearancePage() {
   return (
     <Page

@@ -6,7 +6,9 @@ import {
     Collapsible,
     Icon,
     InlineStack,
-    Link
+    InlineGrid,
+    ButtonGroup,
+    Button
 } from "@shopify/polaris";
 import {
     CaretUpIcon,
@@ -16,7 +18,7 @@ import {
 
 import {useState, useCallback} from 'react';
   
-export default function SetupGuide(){
+export default function DNSRecords(){
     const [openSetupCollapsible1, setOpenSetupCollapsible1] = useState(true);
     const [openSetupCollapsible2, setOpenSetupCollapsible2] = useState(false);
   
@@ -27,11 +29,23 @@ export default function SetupGuide(){
         <Card padding="0">
           <BlockStack>
             <Box padding="400">
-              <Text as="h1" variant="headingMd">
-                Setup Guide
-              </Text>
+            <InlineGrid columns="1fr auto">
+                <Text as="h2" variant="headingSm">
+                    Staff accounts
+                </Text>
+                <ButtonGroup>
+                    <Button
+                    onClick={() => {}}
+                    variant="primary"
+                    accessibilityLabel="Recheck DNS Records"
+                    >
+                    Recheck DNS Records
+                    </Button>
+                </ButtonGroup>
+                </InlineGrid>
               <Text variant="bodyMd" as="p">
-                Use this guide to set up my wishlist app on your store.
+                Shopify POS is the easiest way to sell your products in person.
+                Available for iPad, iPhone, and Android.
               </Text>
             </Box>
             <Box>
@@ -55,7 +69,7 @@ export default function SetupGuide(){
                                 tone="info"
                               />
                             </div>
-                            <Text variant="bodyMd" as="p" fontWeight="semibold">Publist Wishlist Widgets to your live theme</Text>
+                            <Text variant="bodyMd" as="p" fontWeight="semibold">View shipping settings</Text>
                           </InlineStack>
                           <div><Icon
                             source={openSetupCollapsible1 ? CaretUpIcon : CaretDownIcon}
@@ -72,10 +86,9 @@ export default function SetupGuide(){
                   >
                     <Box padding="400">
                       <Text variant="bodyMd" as="p">
-                        Click the link to open the theme editor, and it will automatically enable the widget on your live theme.<br />
-                        <Link target="_blank" url="https://timeless-tune.myshopify.com/admin/themes/current/editor?context=apps&activateAppId=06ff0253-4f00-4c02-999e-3d048e0a81dd/wishlist_trigger">
-                          Go to theme editor
-                        </Link>
+                        Your mailing list lets you contact customers or visitors who
+                        have shown an interest in your store. Reach out to them with
+                        exclusive offers or updates about your products.
                       </Text>
                     </Box>
                   </Collapsible>
@@ -102,7 +115,7 @@ export default function SetupGuide(){
                                 tone="base"
                               />
                             </div>
-                            <Text variant="bodyMd" as="p" fontWeight="semibold">Customize the appearance of your wishlist.</Text>
+                            <Text variant="bodyMd" as="p" fontWeight="semibold">View shipping settings</Text>
                           </InlineStack>
                           <div><Icon
                             source={openSetupCollapsible2 ? CaretUpIcon : CaretDownIcon}
@@ -119,10 +132,9 @@ export default function SetupGuide(){
                   >
                     <Box padding="400">
                       <Text variant="bodyMd" as="p">
-                        Click the link to open the appearance settings of your wishlist.<br />
-                        <Link url="/app/settings?open_appreance=1">
-                          Go to Appreance Settings
-                        </Link>
+                        Your mailing list lets you contact customers or visitors who
+                        have shown an interest in your store. Reach out to them with
+                        exclusive offers or updates about your products.
                       </Text>
                     </Box>
                   </Collapsible>

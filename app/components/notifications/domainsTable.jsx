@@ -76,7 +76,7 @@ export default function DomainTable() {
 
   return (
     <Card>
-      {/*<BlockStack gap={200}>
+      <BlockStack gap={200}>
         <InlineStack align="space-between">
           <Text variant="headingLg" as="h5">
             Domains
@@ -104,10 +104,8 @@ export default function DomainTable() {
       <Modal id="domain-modal" variant="max">
         <DomainsModal />
         <TitleBar title="Add Domain">
-          <button variant="primary">Save</button>
-          <button onClick={() => shopify.modal.hide('domain-modal')}>Close</button>
         </TitleBar>
-      </Modal>*/}
+      </Modal>
     </Card>
   );
 }
