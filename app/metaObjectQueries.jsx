@@ -1,127 +1,3 @@
-export const createMetaObjectDefinationWishlistQuery = () => (`#graphql
-mutation {
-    metaobjectDefinitionCreate(definition: {
-        type: "$app:wishlist",
-        access: {
-            admin: MERCHANT_READ,
-            storefront: PUBLIC_READ
-        },
-        fieldDefinitions: [
-            { key: "customer_id", name: "Customer", type: "single_line_text_field" },
-            { key: "product_id", name: "Product", type: "single_line_text_field" }
-        ]
-    }) {
-        metaobjectDefinition {
-            id
-            type
-            fieldDefinitions {
-                key
-                name
-                type {
-                    name
-                }
-            }
-        }
-    }
-}`)
-
-export const addWishlistQuery = (customer_id, product_id) => (`#graphql
-mutation {
-  metaobjectCreate(metaobject: {
-    type: "$app:wishlist",
-    handle: "${createHandle(customer_id, product_id)}"
-    fields: [
-      {
-        key: "customer_id",
-        value: "${customer_id}"
-      },
-      {
-        key: "product_id",
-        value: "${product_id}"
-      }
-    ]
-  }) {
-    metaobject {
-      id
-      type
-      customer_id: field(key: "customer_id") { value }
-      product_id: field(key: "product_id") { value }
-    }
-  }
-}`)
-
-export const getUniqueWishlistItemQuery = (customer_id, product_id) => (`#graphql
-query {
-  metaobjects(type: "$app:wishlist", first: 10, query:"display_name:'${createDisplayName(customer_id, product_id)}'") {
-    nodes {
-      id
-      customer_id: field(key: "customer_id") { value }
-      product_id: field(key: "product_id") { value }
-    }
-  }
-}`)
-
-export const getWishlistItemsForClientQuery = (customer_id) => (`#graphql
-query {
-  metaobjects(type: "$app:wishlist", first: 10, query:"display_name:'8 8${customer_id}8 '") {
-    nodes {
-      id
-      customer_id: field(key: "customer_id") { value }
-      product_id: field(key: "product_id") { value }
-    }
-  }
-}`)
-
-export const deleteWishlistItemQuery = () => (`#graphql
-mutation metaobjectDelete($id: ID!) {
-  metaobjectDelete(id: $id) {
-    deletedId
-    userErrors {
-      field
-      message
-    }
-  }
-}`)
-
-export const productsByHandlesQuery = (handle_array) => {
-  let res = `#graphql
-  query getProductIdFromHandle(`
-  for(let i = 0; i < handle_array.length; i++){
-    res += '$handle'+i+': String!'
-    if(i == handle_array.length - 1){
-      res += ', '
-    }
-  }
-  res += ') { '
-  for(let i = 0; i < handle_array.length; i++){
-    res += 'handle'+i+': productByHandle(handle: $handle'+i+') { '
-      res += 'title '
-      res += 'featuredImage{ '
-        res += 'url '
-      res += '} '
-      res += 'variants(first: 1){ '
-          res += 'nodes{ '
-            res += 'price '
-            res += 'id '
-          res += '} '
-        res += '} '
-        res += 'onlineStoreUrl '
-        res += 'handle '
-      res += '}'
-  }
-  res += '}'
-
-  let queryvariable = {}
-  for(let i = 0; i < handle_array.length; i++){
-    queryvariable["handle"+i] = handle_array[i]
-  }
-  return {queryString:res, queryvariable}
-}
-
-export const createHandle = (customer_id, product_id) => (`8-8${customer_id}8-8${product_id.replaceAll('-','')}8-8`)
-const createDisplayName = (customer_id, product_id) => createHandle(customer_id, product_id).replaceAll('-',' ')
-
-/************************ New Implementation **********************/
 const getAppInstallationId = async (admin) => {
   
   let res = await admin.graphql(
@@ -131,6 +7,17 @@ const getAppInstallationId = async (admin) => {
       }
     }`)
   res = (await res.json()).data.currentAppInstallation.id
+  return res
+}
+
+export const getMyShopifyDomain = async (admin) => {
+  let res = await admin.graphql(
+    `query {
+      shop {
+        myshopifyDomain
+      }
+    }`)
+  res = (await res.json()).data.shop.myshopifyDomain
   return res
 }
 

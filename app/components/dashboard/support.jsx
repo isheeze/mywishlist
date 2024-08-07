@@ -1,8 +1,8 @@
-import { Layout, Box, Card, Icon, InlineStack, Text, Button, BlockStack } from "@shopify/polaris";
+import { Layout, Box, Card, Icon, InlineStack, Text, Button, BlockStack, Link } from "@shopify/polaris";
 import {
     ChatReferralIcon,
-    SocialPostIcon,
-    TeamIcon
+    EmailIcon,
+    BookIcon
 } from '@shopify/polaris-icons';
 
 export default function Support(){
@@ -16,12 +16,12 @@ export default function Support(){
                         <Box padding="100">
                             <BlockStack gap="100" inlineAlign="start">
                                 <Text as="p" fontWeight="bold">
-                                    Online store dashboard
+                                    Live Chat
                                 </Text>
                                 <Text as="p">
-                                    We're here to assist you...
+                                    We're here to assist
                                 </Text>
-                                <Button>Get Support</Button>
+                                <a href="javascript:void(Tawk_API.toggle())"><Button>Get Support</Button></a>
                             </BlockStack>
                         </Box>
                     </InlineStack>
@@ -30,16 +30,18 @@ export default function Support(){
                 <Layout.Section variant="oneThird">
                 <Box background="bg-surface-hover" padding="400" borderRadius="200">
                     <InlineStack gap="100" blockAlign="start" align="start">
-                        <Box width="40px" borderRadius="750" borderColor="black" borderWidth="0165" padding="150"><Icon source={ChatReferralIcon} /></Box>
+                        <Box width="40px" borderRadius="750" borderColor="black" borderWidth="0165" padding="150"><Icon source={EmailIcon} /></Box>
                         <Box padding="100">
                             <BlockStack gap="100" inlineAlign="start">
                                 <Text as="p" fontWeight="bold">
-                                    Online store dashboard
+                                    Email Support
                                 </Text>
                                 <Text as="p">
-                                    We're here to assist you...
+                                    isheeze@gmail.com
                                 </Text>
-                                <Button>Get Support</Button>
+                                <a href="mailto:isheeze@gmail.com" target="_blank">
+                                    <Button>Get Support</Button>
+                                </a>
                             </BlockStack>
                         </Box>
                     </InlineStack>
@@ -48,16 +50,18 @@ export default function Support(){
                 <Layout.Section variant="oneThird">
                 <Box background="bg-surface-hover" padding="400" borderRadius="200">
                     <InlineStack gap="100" blockAlign="start" align="start">
-                        <Box width="40px" borderRadius="750" borderColor="black" borderWidth="0165" padding="150"><Icon source={ChatReferralIcon} /></Box>
+                        <Box width="40px" borderRadius="750" borderColor="black" borderWidth="0165" padding="150"><Icon source={BookIcon} /></Box>
                         <Box padding="100">
                             <BlockStack gap="100" inlineAlign="start">
                                 <Text as="p" fontWeight="bold">
-                                    Online store dashboard
+                                    Documentation Center
                                 </Text>
                                 <Text as="p">
-                                    We're here to assist you...
+                                    Extensive knowledge base
                                 </Text>
-                                <Button>Get Support</Button>
+                                <a href="#" target="_blank">
+                                    <Button>Get Support</Button>    
+                                </a>
                             </BlockStack>
                         </Box>
                     </InlineStack>

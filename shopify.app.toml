@@ -3,7 +3,7 @@
 client_id = "d59765e4d24d7e50969ac8a905400c6a"
 name = "my-wishlist"
 handle = "my-wishlist-19"
-application_url = "https://problems-tone-designed-broadcasting.trycloudflare.com"
+application_url = "https://brunette-towns-available-evanescence.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_metaobjects,read_product_listings,read_products,write_metaobject_
 
 [auth]
 redirect_urls = [
-  "https://problems-tone-designed-broadcasting.trycloudflare.com/auth/callback",
-  "https://problems-tone-designed-broadcasting.trycloudflare.com/auth/shopify/callback",
-  "https://problems-tone-designed-broadcasting.trycloudflare.com/api/auth/callback"
+  "https://brunette-towns-available-evanescence.trycloudflare.com/auth/callback",
+  "https://brunette-towns-available-evanescence.trycloudflare.com/auth/shopify/callback",
+  "https://brunette-towns-available-evanescence.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

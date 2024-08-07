@@ -1,3 +1,4 @@
+import { useLoaderData } from "@remix-run/react";
 import {
   Page,
   Layout
@@ -8,7 +9,20 @@ import TopProducts from "../components/dashboard/topProducts";
 import TopUsers from "../components/dashboard/topUsers";
 import Support from "../components/dashboard/support";
 
+import { getMyShopifyDomain } from "../metaObjectQueries";
+import { authenticate } from "../shopify.server";
+import { json } from "@remix-run/node";
+
+export async function loader({request}) {
+  const { admin } = await authenticate.admin(request)
+
+  const domain = await getMyShopifyDomain(admin)
+  return json({myShopifyDomain: domain});
+}
+
 export default function HomePage() {
+  const data = useLoaderData()
+
   return (
     <Page
     title="Welcome to My Wishlist!"
@@ -17,7 +31,7 @@ export default function HomePage() {
     >
       <Layout>
         <Layout.Section>
-          <SetupGuide />
+          <SetupGuide myShopifyDomain={data.myShopifyDomain}/>
         </Layout.Section>
         <Layout.Section>
           <Stats />

@@ -16,7 +16,7 @@ import {
 
 import {useState, useCallback} from 'react';
   
-export default function SetupGuide(){
+export default function SetupGuide({myShopifyDomain}){
     const [openSetupCollapsible1, setOpenSetupCollapsible1] = useState(true);
     const [openSetupCollapsible2, setOpenSetupCollapsible2] = useState(false);
   
@@ -73,7 +73,7 @@ export default function SetupGuide(){
                     <Box padding="400">
                       <Text variant="bodyMd" as="p">
                         Click the link to open the theme editor, and it will automatically enable the widget on your live theme.<br />
-                        <Link target="_blank" url="https://timeless-tune.myshopify.com/admin/themes/current/editor?context=apps&activateAppId=06ff0253-4f00-4c02-999e-3d048e0a81dd/wishlist_trigger">
+                        <Link target="_blank" url={`https://${myShopifyDomain}/admin/themes/current/editor?context=apps&activateAppId=06ff0253-4f00-4c02-999e-3d048e0a81dd/wishlist_trigger`}>
                           Go to theme editor
                         </Link>
                       </Text>
